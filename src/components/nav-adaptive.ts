@@ -2,7 +2,7 @@ import { useProps, useElement } from '../core/elements.js'
 import { Selector } from '../core/utils/selector.js'
 import { useComputedStyle } from '../core/utils/CSS.js'
 import { ResizeWatcher } from '../core/utils/resize-watcher.js'
-import { popup } from '../core/utils/popup.js'
+import { Popup } from '../core/utils/popup.js'
 import * as scheme from '../core/scheme.js'
 import './ripple.js'
 
@@ -27,19 +27,20 @@ const style = /*css*/`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   min-width: 40px;
   outline-offset: 4px;
   transition-property: none;
   transition-timing-function: ${scheme.motion.easing.standard};
   transition-duration: ${scheme.motion.duration.short4};
 }
-.wrap{
+.wrapper{
   display: inline-flex;
   align-items: inherit;
   gap: inherit;
+  transition-property: none;
 }
-.layout{
+.popover{
   display: contents;
   position: fixed;
   border: none;
@@ -51,6 +52,10 @@ const style = /*css*/`
   height: auto;
   inset: auto;
   margin: 0;
+  transition-property: none;
+  &::backdrop{
+    background: none;
+  }
 }
 .container{
   display: contents;
@@ -59,34 +64,40 @@ const style = /*css*/`
   display: none;
 }
 :host([icon-only]){
-  .wrap{
+  .wrapper{
     --s_nav-adaptive-item-text-display: none;
     --s_nav-adaptive-item-layout-padding: 0;
     --s_nav-adaptive-item-indicator-transform: scale(0, 0);
+    --s_nav-adaptive-item-tooltip-display: contents;
   }
 }
 :host([collapsed]){
-  .wrap{
+  .wrapper{
     --s_nav-adaptive-item-icon-display: contents;
     --s_nav-adaptive-item-badge-position: relative;
     --s_nav-adaptive-item-badge-transform: none;
     --s_nav-adaptive-item-layout-padding: 0 16px;
     --s_nav-adaptive-item-layout-pressed-border-radius: 0px;
   }
-  .layout{
+  .popover{
     display: none;
     pointer-events: none;
     inset: 0;
+    overflow: hidden;
     .container{
       position: absolute;
       display: flex;
       flex-direction: column;
       border-radius: 12px;
       gap: inherit;
+      transition-property: none;
       padding: 8px 0;
       contain: layout;
+      overflow: auto;
+      max-height: 50%;
       background: ${scheme.color.surfaceContainer};
       box-shadow: ${scheme.elevation.level3};
+      border: solid var(--s-border-min, 1px) var(--s-color-outline-variant)
     }
     &.open{
       position: fixed;
@@ -100,9 +111,6 @@ const style = /*css*/`
         border-radius: 0;
         justify-content: flex-start;
       }
-    }
-    &::backdrop{
-      background: none;
     }
   }
   .toggle{
@@ -178,6 +186,9 @@ const itemStyle = /*css*/`
     &::before{
       transform: scale(0, 0);
     }
+    ::slotted(s-tooltip){
+      display: contents;
+    }
   }
   &.has-icon.has-text{
     padding: var(--s_nav-adaptive-item-layout-padding, 0 16px);
@@ -200,7 +211,7 @@ const itemStyle = /*css*/`
   display: contents;
   position: relative;
 }
-::slotted(:is(s-icon, svg)[slot=icon]){
+::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)[slot=icon]){
   width: 24px;
   height: 24px;
   color: currentColor;
@@ -217,9 +228,12 @@ const itemStyle = /*css*/`
   position: relative;
   order: 1;
 }
+::slotted(s-tooltip){
+  display: var(--s_nav-adaptive-item-tooltip-display, none);
+}
 :host(:focus-visible){
   outline: none;
-  .layout::after{
+  .popover::after{
     opacity: 1;
   }
 }
@@ -233,8 +247,8 @@ const itemStyle = /*css*/`
 `
 
 const template = /*html*/`
-<div class="wrap" part="wrap">
-  <dialog class="layout" part="layout" role="navigation" tabindex="-1">
+<div class="wrapper" part="wrapper">
+  <dialog class="popover" part="popover" role="navigation" tabindex="-1">
     <div class="container" part="container">
       <slot></slot>
     </div>
@@ -261,14 +275,15 @@ export class NavAdaptive extends useElement({
   style, props, template,
   states: ['formable'],
   setup(shadowRoot, info) {
-    const wrap = shadowRoot.querySelector<HTMLDialogElement>('.wrap')!
-    const layout = shadowRoot.querySelector<HTMLDialogElement>('.layout')!
+    const wrapper = shadowRoot.querySelector<HTMLDialogElement>('.wrapper')!
+    const popover = shadowRoot.querySelector<HTMLDialogElement>('.popover')!
     const container = shadowRoot.querySelector<HTMLDivElement>('.container')!
     const slot = shadowRoot.querySelector<HTMLSlotElement>('slot:not([name])')!
     const toggle = shadowRoot.querySelector<HTMLDivElement>('.toggle')!
     const computedStyle = useComputedStyle(this)
     const selector = new Selector(this, slot, NavAdaptiveItem)
-    const resizer = new ResizeWatcher(this, wrap)
+    const resizer = new ResizeWatcher(this, wrapper)
+    const popup = new Popup(this, popover, container)
     const getAnimateOptions = () => {
       const easing = computedStyle.getValue('transition-timing-function')
       const duration = computedStyle.getDuration('transition-duration')
@@ -276,21 +291,19 @@ export class NavAdaptive extends useElement({
     }
     selector.onValueChange = () => info.internals.setFormValue(selector.getFormData())
     selector.onSlotChange = () => {
-      if (selector.items.length > 0) {
-        resizer.run(true)
-        return
-      }
+      if (selector.items.length > 0) return resizer.run(true)
       resizer.stop()
       this.removeAttribute('collapsed')
       this.removeAttribute('icon-only')
     }
+    let closePopover: Function | undefined
     resizer.onChange = () => {
       resizer.stop()
       this.removeAttribute('collapsed')
       this.setAttribute('icon-only', '')
-      const onlyIconWidth = wrap.offsetWidth
+      const onlyIconWidth = wrapper.offsetWidth
       this.removeAttribute('icon-only')
-      const width = wrap.offsetWidth
+      const width = wrapper.offsetWidth
       if (this.offsetWidth < width) {
         if (this.offsetWidth < width && onlyIconWidth <= this.offsetWidth) {
           this.setAttribute('icon-only', '')
@@ -301,54 +314,14 @@ export class NavAdaptive extends useElement({
           this.removeAttribute('icon-only')
         }
       }
+      if (closePopover) closePopover()
       resizer.run()
     }
     toggle.onclick = async (e) => {
-      if (e.target === toggle || !this.hasAttribute('collapsed') || layout.open) return
-      const rootNode = this.getRootNode()
-      const focus = rootNode instanceof Document ? rootNode.querySelector(':focus-visible') : null
-      const focusElement = focus instanceof HTMLElement ? focus : null
-      layout.classList.add('open')
-      layout.showModal()
-      resizer.stop()
-      const obs = new ResizeWatcher(container)
-      obs.onChange = () => {
-        const gap = computedStyle.getNumber('outline-offset')
-        const position = popup({ anchor: toggle, popover: container, gap, gravity: 'bottom' })
-        container.style.top = `${position.top}px`
-        container.style.left = `${position.left}px`
-        container.style.transformOrigin = position.origin.join(' ')
-      }
-      obs.onChange()
-      const dialogClose = (e: KeyboardEvent) => {
-        if (e.key !== 'Escape') return
-        e.preventDefault()
-        close()
-      }
-      layout.addEventListener('keydown', dialogClose)
-      layout.onpointerdown = () => close()
-      container.onpointerdown = (e) => e.stopPropagation()
-      container.onclick = (e) => e.target !== container && close()
-      const close = async () => {
-        layout.onpointerdown = null
-        container.onpointerdown = null
-        container.onclick = null
-        layout.removeEventListener('keydown', dialogClose)
-        window.removeEventListener('resize', close)
-        obs.stop()
-        await container.animate({ opacity: [1, 0], transform: ['scale(1)', 'scale(.8)'] }, getAnimateOptions()).finished
-        layout.classList.remove('open')
-        layout.close()
-        if (focusElement) {
-          focusElement.focus()
-        } else if (document.activeElement instanceof HTMLElement) {
-          document.activeElement.blur()
-        }
-        resizer.run(true)
-      }
-      window.addEventListener('resize', close)
-      await container.animate({ opacity: [0, 1], transform: ['scale(.8)', 'scale(1)'] }, getAnimateOptions()).finished
-      obs.run()
+      if (e.target === toggle || !this.hasAttribute('collapsed') || popover.open) return
+      popup.open(toggle, 'bottom', computedStyle.getNumber('gap'), getAnimateOptions())
+      popup.onClose = () => selector.onRender = closePopover = undefined
+      selector.onRender = closePopover = () => popup.close()
     }
     return {
       expose: {

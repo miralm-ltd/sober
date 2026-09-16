@@ -1,14 +1,10 @@
 import { useElement, useProps, getParentDepth, device } from '../core/elements.js'
-import { getStackingContext } from '../core/utils/get-stacking-context.js'
 import { useComputedStyle } from '../core/utils/CSS.js'
-import { oneEvent } from '../core/utils/one-event.js'
-import { popup } from '../core/utils/popup.js'
-import { ResizeWatcher } from '../core/utils/resize-watcher.js'
+import { Popup } from '../core/utils/popup.js'
 import * as scheme from '../core/scheme.js'
 
 const props = useProps({
-  gravity: ['auto', 'top', 'bottom', 'left', 'right'],
-  disabled: false,
+  placement: ['auto', 'top', 'bottom', 'left', 'right'],
   $parentDepth: -1,
 })
 const events = {
@@ -52,98 +48,76 @@ const style = /*css*/`
   color: inherit;
   transition-property: none;
   z-index: 3;
+  &.open{
+    display: block;
+  }
 }
 `
 
 const template = /*html*/`
-<slot class="popover" popover="manual" part="popup"></slot>
+<div class="popover" popover="manual" part="popup">
+  <slot></slot>
+</div>
 `
 
 export class Tooltip extends useElement({
   style, template, props, events,
   setup(shadowRoot, info) {
-    const popover = shadowRoot.querySelector<HTMLSlotElement>('.popover')!
+    const popover = shadowRoot.querySelector<HTMLDivElement>('.popover')!
     const computedStyle = useComputedStyle(this)
+    const popup = new Popup(this, popover, popover)
     const getAnimateOptions = () => {
       const easing = computedStyle.getValue('transition-timing-function')
       const duration = computedStyle.getDuration('transition-duration')
       return { easing, duration }
     }
-    const resizer = new ResizeWatcher(popover)
-    resizer.onChange = () => updatePopover()
-    const state: { open: boolean, timer?: number } = { open: false }
-    const updatePopover = () => {
-      if (!info.parentNode) return
-      const cssGravity = computedStyle.getValue('--s-tooltip-gravity') as typeof this.gravity
-      const gravity = props.metadata.gravity.types?.includes(cssGravity) ? cssGravity : this.gravity
-      const gap = computedStyle.getNumber('outline-offset')
-      const gravityX = gravity === 'auto' ? device.touchEnabled ? 'top' : 'bottom' : gravity
-      const position = popup({ anchor: info.parentNode, popover, gravity: gravityX, gap })
-      popover.style.top = `${position.top}px`
-      popover.style.left = `${position.left}px`
-      popover.style.transformOrigin = position.origin.join(' ')
-    }
-    const open = async () => {
-      if (!this.isConnected || !info.parentNode || state.open || computedStyle.getValue('display') === 'none') return
-      state.open = true
-      popover.style.display = 'block'
-      popover.style.removeProperty('top')
-      popover.style.removeProperty('left')
-      if (!popover.showPopover) {
-        const rect = getStackingContext(shadowRoot)
-        popover.style.marginLeft = `${-rect.left}px`
-        popover.style.marginTop = `${-rect.top}px`
-      }
-      popover.showPopover?.()
-      updatePopover()
-      resizer.run()
-      await popover.animate({ opacity: [0, 1], transform: ['scale(.8)', 'scale(1)'] }, getAnimateOptions()).finished
-      this.dispatchEvent(new Event('opened'))
-    }
-    const close = async () => {
-      if (!this.isConnected || !state.open || computedStyle.getValue('display') === 'none') return
-      state.open = false
-      await popover.animate({ opacity: [1, 0], transform: ['scale(1)', 'scale(.8)'] }, getAnimateOptions()).finished
-      if (state.open) return
-      resizer.stop()
-      popover.hidePopover?.()
-      popover.style.removeProperty('display')
-      this.dispatchEvent(new Event('closed'))
-    }
     const hover = (e: PointerEvent) => {
-      const cssDisabled = computedStyle.getValue('--s-tooltip-disabled')
-      const disabled = ['none', ''].includes(cssDisabled) ? this.disabled : Boolean(cssDisabled)
-      if (disabled) return
-      const hide = () => {
-        close()
-        this.dispatchEvent(new Event('close'))
-      }
+      if (!this.isConnected || !info.parentNode || popover.classList.contains('open') || computedStyle.getValue('display') === 'none') return
+      const cssPlacement = computedStyle.getVariable('--s-tooltip-placement', this.placement, props.metadata.placement.types)
+      const placement = cssPlacement === 'auto' ? device.touchEnabled ? 'top' : 'bottom' : cssPlacement
+      const parentNode = info.parentNode!
+      const call = () => popup.open(parentNode, placement, computedStyle.getNumber('outline-offset'), getAnimateOptions())
+      const close = () => popup.close()
       if (e.pointerType === 'mouse' && device.mouseEnabled) {
-        open()
-        oneEvent([{ element: info.parentNode!, events: ['pointerleave', 'pointercancel'] }, { element: document, events: ['wheel'] }, { element: window, events: ['resize'] }], hide)
-      } else {
-        state.timer = setTimeout(open, 300)
-        oneEvent([{ element: document, events: ['pointerup', 'pointercancel'] }, { element: window, events: ['resize'] }], () => {
-          clearTimeout(state.timer)
-          state.open && hide()
-        })
+        popup.onClose = () => {
+          parentNode.removeEventListener('pointerleave', close)
+          document.removeEventListener('wheel', close)
+        }
+        parentNode.addEventListener('pointerleave', close)
+        document.addEventListener('wheel', close)
+        call()
+        return
       }
-      this.dispatchEvent(new Event('open'))
+      //touch
+      const timer = setTimeout(() => {
+        popup.onClose = () => {
+          document.removeEventListener('pointerup', close)
+          document.removeEventListener('pointercancel', close)
+        }
+        document.addEventListener('pointerup', close)
+        document.addEventListener('pointercancel', close)
+        call()
+        cancel()
+      }, 500)
+      const cancel = () => {
+        clearTimeout(timer)
+        parentNode.removeEventListener('pointercancel', cancel)
+        parentNode.removeEventListener('pointerleave', cancel)
+      }
+      parentNode.addEventListener('pointerleave', cancel)
+      parentNode.addEventListener('pointercancel', cancel)
     }
     const addEvent = () => {
       if (!info.parentNode) return
       let parent = getParentDepth(this) || info.parentNode
-      parent.addEventListener('pointerover', hover)
+      parent.addEventListener('pointerenter', hover)
       info.parentNode = parent
     }
-    const removeEvent = () => {
-      info.parentNode?.removeEventListener('pointerover', hover)
-    }
+    const removeEvent = () => info.parentNode?.removeEventListener('pointerenter', hover)
     return {
-      expose: { open, close },
       onMounted: addEvent,
       onUnmounted: removeEvent,
-      setAncestorLevel: () => {
+      parentDepth: () => {
         removeEvent()
         addEvent()
       }

@@ -11,30 +11,32 @@
 
 ## 位置
 
-默认情况下，该组件会寻找合适的位置显示，你无需关心它的出现位置，但是你依旧可以设置 `gravity` 属性默认位置，它只会影响在空间足够显示的情况下的显示位置，如果空间不足，则会自动调整显示位置
+默认情况下，该组件会寻找合适的位置显示，你无需关心它的出现位置。  
+但是你依旧可以设置 `placement` 属性默认位置，它只会影响在空间足够显示的情况下的显示位置，如果空间不足，则会自动调整显示位置。  
+可选值：`auto`、`top`、`bottom`、`left`、`right`，在值为 `auto` 时，在触屏设备上为 `top`（以免手指触摸遮挡），反之为 `bottom`。
 
 ```html preview
 <s-button>
   top
-  <s-tooltip gravity="top"> <!-- [!code highlight] -->
+  <s-tooltip placement="top"> <!-- [!code highlight] -->
     测试文本 测试文本<br>测试文本 测试文本<br>测试文本 测试文本
   </s-tooltip>
 </s-button>
 <s-button>
   bottom
-  <s-tooltip gravity="bottom"> <!-- [!code highlight] -->
+  <s-tooltip placement="bottom"> <!-- [!code highlight] -->
     测试文本 测试文本<br>测试文本 测试文本<br>测试文本 测试文本
   </s-tooltip>
 </s-button>
 <s-button>
   left
-  <s-tooltip gravity="left"> <!-- [!code highlight] -->
+  <s-tooltip placement="left"> <!-- [!code highlight] -->
     测试文本 测试文本<br>测试文本 测试文本<br>测试文本 测试文本
   </s-tooltip>
 </s-button>
 <s-button>
   right
-  <s-tooltip gravity="right"> <!-- [!code highlight] -->
+  <s-tooltip placement="right"> <!-- [!code highlight] -->
     测试文本 测试文本<br>测试文本 测试文本<br>测试文本 测试文本
   </s-tooltip>
 </s-button>
@@ -73,7 +75,7 @@
 | ----------- | ------------------------------- | ------ | ---- | ------------------------------------------------------------------------------------------------------ |
 | disabled    | boolean                         | false  | √    | 禁用的，设置该属性后不再主动触发显示                                                                   |
 | parentDepth | number                          | -1     | ×    | 父级层数，该属性会设置在**祖先元素第几层**触发。如果组件作为其他组件的插槽插入，会查找插槽内的祖先元素 |
-| gravity     | auto, top, bottom,  left, right | auto   | √    | 显示位置，该属性只影响默认位置，在屏幕无法完整显示时会自动调整显示方向                                 |
+| placement   | auto, top, bottom,  left, right | auto   | √    | 显示位置，该属性只影响默认位置，在屏幕无法完整显示时会自动调整显示方向                                 |
 
 ---
 
@@ -92,7 +94,7 @@
 
 ## CSS 样式变量
 
-| 名称                 | 说明                                                      |
-| -------------------- | --------------------------------------------------------- |
-| --s-tooltip-disabled | 该 CSS 变量和 `disabled` 属性一致，区别是该变量优先级更高 |
-| --s-tooltip-gravity  | 该 CSS 变量和 `gravity` 属性一致，区别是该变量优先级更高  |
+| 名称                  | 说明                                                       |
+| --------------------- | ---------------------------------------------------------- |
+| --s-tooltip-disabled  | 该 CSS 变量和 `disabled` 属性一致，区别是该变量优先级更高  |
+| --s-tooltip-placement | 该 CSS 变量和 `placement` 属性一致，区别是该变量优先级更高 |

@@ -37,13 +37,13 @@ const style = /*css*/`
   animation-timing-function: inherit;
   animation-duration: inherit;
 }
+.container:is(.hover, .pressed) .mask{
+  opacity: var(--s-ripple-hover-opacity, .1);
+}
 .mask{
   opacity: 0;
   transition-property: opacity;
   background: var(--s-ripple-color, currentColor);
-  &.hover{
-    opacity: var(--s-ripple-hover-opacity, .1);
-  }
 }
 .ripple{
   opacity: 0;
@@ -115,7 +115,6 @@ export class Ripple extends useElement({
   setup(shadowRoot, info) {
     const container = shadowRoot.querySelector<HTMLDivElement>('.container')!
     const ripple = shadowRoot.querySelector<HTMLDivElement>('.ripple')!
-    const mask = shadowRoot.querySelector<HTMLDivElement>('.mask')!
     const computedStyle = useComputedStyle(this)
     const getAnimateOptions = () => {
       const easing = computedStyle.getValue('animation-timing-function')
@@ -124,13 +123,11 @@ export class Ripple extends useElement({
     }
     const start = (event: PointerEvent) => {
       if (computedStyle.getValue('display') === 'none') return
-      const cssDisabled = computedStyle.getValue('--s-ripple-disabled')
-      const disabled = ['', 'none'].includes(cssDisabled) ? this.disabled : Boolean(cssDisabled)
+      const disabled = computedStyle.getVariable('--s-ripple-disabled', this.disabled)
       if (disabled) return
       const run = (event: PointerEvent) => startRipple({ root: this, ripple, container, event, animateOptions: getAnimateOptions() })
       if (event.pointerType === 'mouse') return oneEvent([{ element: document, events: ['pointerup', 'pointercancel'] }], run(event))
-      const cssDelay = computedStyle.getValue('--s-ripple-delay')
-      const delay = ['', 'none'].includes(cssDelay) ? this.delay : Number(cssDelay)
+      const delay = computedStyle.getVariable('--s-ripple-delay', this.delay)
       if (delay <= 0) return oneEvent([{ element: document, events: ['touchcancel', 'touchend'] }], run(event))
       let stop: Function | null = null
       const timer = setTimeout(() => stop = run(event), delay)
@@ -147,9 +144,8 @@ export class Ripple extends useElement({
       const force = event.type === 'pointerenter'
       info.parentNode?.toggleAttribute('hover', force)
       if (computedStyle.getValue('display') === 'none') return
-      const cssDisabled = computedStyle.getValue('--s-ripple-disabled-hover')
-      const hover = ['', 'none'].includes(cssDisabled) ? this.disabledHover : Boolean(cssDisabled)
-      !hover && mask.classList.toggle('hover', force)
+      const disabled = computedStyle.getVariable('--s-ripple-disabled-hover', this.disabledHover)
+      !disabled && container.classList.toggle('hover', force)
     }
     const down = (event: PointerEvent) => {
       if (!info.parentNode || event.button !== 0) return

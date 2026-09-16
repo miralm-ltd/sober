@@ -4,7 +4,7 @@
 
 ```html preview
 <s-split-button>
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   label
 </s-split-button>
 ```
@@ -15,22 +15,22 @@
 
 ```html preview
 <s-split-button variant="filled">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button variant="elevated">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button variant="tonal">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button variant="outlined">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 ```
@@ -41,22 +41,22 @@
 
 ```html preview
 <s-split-button disabled> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button disabled variant="elevated">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button disabled variant="tonal"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 
 <s-split-button disabled variant="outlined">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-split-button>
 ```
@@ -67,7 +67,7 @@
 
 ```html preview
 <s-split-button>
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   label
   <svg slot="toggle-icon" viewBox="0 -960 960 960"><path d="M480-360 280-560h400L480-360Z"></path></svg>
   <s-tooltip slot="toggle-icon" parentDepth="1">展开</s-tooltip>
@@ -80,27 +80,27 @@
 
 ```html preview
 <s-split-button size="extra-small"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-split-button>
 
 <s-split-button size="small"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-split-button>
 
 <s-split-button size="medium"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-split-button>
 
 <s-split-button size="large"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-split-button>
 
 <s-split-button size="extra-large"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-split-button>
 ```

@@ -227,6 +227,7 @@ const template = /*html*/`
     <span class="line top right bottom" part="line"></span>
     <span class="line focused top right bottom" part="line focused-line"></span>
   </div>
+  <slot></slot>
 </div>
 `
 

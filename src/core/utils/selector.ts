@@ -16,7 +16,6 @@ export class Selector<C extends Component, CI extends ComponentItem> {
   items: CI[] = []
   selectedItems: CI[] = []
   selectedIndexes: number[] = []
-
   private _values = new Set<string>()
   private flagged = false
   declare onRender?: (olds: CI[], initial?: true) => void

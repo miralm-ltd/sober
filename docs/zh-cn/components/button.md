@@ -16,27 +16,27 @@
 
 ```html preview
 <s-button> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button variant="elevated"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button variant="tonal"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button variant="outlined"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button variant="text"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 ```
@@ -47,27 +47,27 @@
 
 ```html preview
 <s-button disabled> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button disabled variant="elevated"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button disabled variant="tonal"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button disabled variant="outlined"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 
 <s-button disabled variant="text"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 ```
@@ -78,44 +78,44 @@
 
 ```html preview
 <s-button type="checkbox">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="checkbox" variant="elevated">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="checkbox" variant="tonal">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="checkbox" variant="outlined">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="checkbox" variant="text"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <hr>
 <s-button type="radio" name="select">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="radio" name="select" variant="elevated">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="radio" name="select" variant="tonal">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="radio" name="select" variant="outlined">
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 <s-button type="radio" name="select" variant="text"> 
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   Button
 </s-button>
 ```
@@ -126,27 +126,27 @@
 
 ```html preview
 <s-button size="extra-small"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-button>
 
 <s-button size="small"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-button>
 
 <s-button size="medium"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-button>
 
 <s-button size="large"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-button>
 
 <s-button size="extra-large"> <!-- [!code highlight] -->
-  <s-icon slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   button
 </s-button>
 ```
@@ -157,9 +157,9 @@
 
 ```html preview
 <s-button style="background-color: #278d1e; display: flex;"> 
-  <s-icon name="done" slot="start"></s-icon>
+  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
   full width
-  <s-icon name="close" slot="end"></s-icon>
+  <s-icon slot="end"></s-icon>
   <s-tooltip>提示</s-tooltip>
 </s-button>
 ```
