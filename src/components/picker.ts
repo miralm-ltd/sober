@@ -36,7 +36,7 @@ const style = /*css*/`
   color: ${scheme.color.onSurface};
   transition-timing-function: ${scheme.motion.easing.standard};
   transition-duration: ${scheme.motion.duration.short4};
-  border-radius: ${scheme.shape.corner.extraSmall};
+  border-radius: 4px;
 }
 .field-set{
   min-height: inherit;
@@ -46,7 +46,7 @@ const style = /*css*/`
   position: relative;
   --s_picker-padding-left: var(--s-picker-padding-left, var(--s-picker-padding, 16px));
   --s_picker-padding-right: var(--s-picker-padding-right, var(--s-picker-padding, 16px));
-  --s_picker-border-radius: var(--s-picker-border-radius, ${scheme.shape.corner.extraSmall});
+  --s_picker-border-radius: var(--s-picker-border-radius, 4px);
   --s_picker-border-top-left-radius: var(--s-picker-border-top-left-radius, var(--s_picker-border-radius));
   --s_picker-border-top-right-radius: var(--s-picker-border-top-right-radius, var(--s_picker-border-radius));
   --s_picker-border-bottom-left-radius: var(--s-picker-border-bottom-left-radius, var(--s_picker-border-radius));
@@ -150,7 +150,7 @@ svg{
   border: solid var(--s-border-min, 1px) var(--s-color-outline-variant);
   background: ${scheme.color.surfaceContainer};
   box-shadow: ${scheme.elevation.level3};
-  border-radius: ${scheme.shape.corner.medium};
+  border-radius: 12px;
 }
 .scroll-view{
   overflow: auto;
@@ -299,7 +299,7 @@ const template = /*html*/`
 
 const itemTemplate = /*html*/`
 <slot name="start"></slot>
-<div slot="text" part="text">
+<div slot="text" class="text" part="text">
   <slot></slot>
 </div>
 <slot name="end"></slot>
@@ -316,6 +316,7 @@ export class Picker extends useElement({
     const text = shadowRoot.querySelector<HTMLDivElement>('.text')!
     const popover = shadowRoot.querySelector<HTMLDialogElement>('.popover')!
     const container = shadowRoot.querySelector<HTMLDivElement>('.container')!
+    const scrollView = shadowRoot.querySelector<HTMLDivElement>('.scroll-view')!
     const search = shadowRoot.querySelector<HTMLInputElement>('input')!
     const computedStyle = useComputedStyle(this)
     const popup = new Popup(this, popover, container)
@@ -335,6 +336,7 @@ export class Picker extends useElement({
     const onSearch = () => {
       if (selector.items.length === 0) return
       selector.items.forEach((item) => item.toggleAttribute('preferred', item.text.includes(search.value)))
+      scrollView.scrollTop = 0
     }
     search.oninput = onSearch
     this.addEventListener(`${name}:text-changed`, () => {

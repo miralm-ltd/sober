@@ -31,7 +31,7 @@ const style = /*css*/`
   --s_text-area-padding-bottom: var(--s-text-area-padding-bottom, var(--s-text-area-padding, 12px));
   --s_text-area-padding-left: var(--s-text-area-padding-left, var(--s-text-area-padding, 16px));
   --s_text-area-padding-right: var(--s-text-area-padding-right, var(--s-text-area-padding, 16px));
-  --s_text-area-border-radius: var(--s-text-area-border-radius, ${scheme.shape.corner.extraSmall});
+  --s_text-area-border-radius: var(--s-text-area-border-radius, 4px);
   --s_text-area-border-top-left-radius: var(--s-text-area-border-top-left-radius, var(--s_text-area-border-radius));
   --s_text-area-border-top-right-radius: var(--s-text-area-border-top-right-radius, var(--s_text-area-border-radius));
   --s_text-area-border-bottom-left-radius: var(--s-text-area-border-bottom-left-radius, var(--s_text-area-border-radius));
@@ -61,6 +61,13 @@ const style = /*css*/`
     inset: 0;
   }
 }
+.layout{
+  display: flex;
+  padding: 0;
+  max-height: inherit;
+  position: relative;
+  min-height: inherit;
+}
 .editor{
   resize: none;
   overflow: visible;
@@ -82,6 +89,9 @@ const style = /*css*/`
   &::after{
     content: '\u200B';
   }
+}
+.view{
+  padding: 0 var(--s_text-area-padding-right) 0 var(--s_text-area-padding-left);
 }
 ::slotted(*){
   align-self: flex-end;
@@ -123,6 +133,9 @@ const template = /*html*/`
     <div slot="body" class="layout" part="layout">
       <textarea name="textarea" rows="1" tabindex="-1" class="editor" part="textarea" autocomplete="off"></textarea>
     </div>
+    <div slot="body" class="view" part="view">
+      <slot></slot>
+    </div>
     <div slot="end" class="end" part="end">
       <div class="icon-button hide clear" tabindex="0" part="action clear">
         <svg viewBox="0 -960 960 960"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path></svg>
@@ -133,7 +146,7 @@ const template = /*html*/`
   </s-field-set>
   <div class="helper" part="helper">
     <div class="text" part="helper-text">
-      <slot></slot>
+    <slot name="helper"></slot>
     </div>
     <div class="count hide">0</div>
   </div>

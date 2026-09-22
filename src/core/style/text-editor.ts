@@ -21,7 +21,7 @@ export const textEditorStyle = /*css*/`
   cursor: pointer;
   position: relative;
   &[pressed]{
-    border-radius: ${scheme.shape.corner.small};
+    border-radius: 8px;
   }
   svg{
     width: 24px;
@@ -41,13 +41,6 @@ export const textEditorStyle = /*css*/`
   min-height: inherit;
   max-height: inherit;
   font-size: inherit;
-}
-.layout{
-  display: flex;
-  padding: 0;
-  height: 100%;
-  max-height: inherit;
-  position: relative;
 }
 .editor{
   display: block;
@@ -111,7 +104,7 @@ export const textEditorStyle = /*css*/`
 }
 ::slotted(s-button){
   padding: 0 8px;
-  border-radius: ${scheme.shape.corner.small};
+  border-radius: 8px;
 }
 ::slotted(:is(s-icon-button, s-button)[slot=start]){
   margin: 4px;

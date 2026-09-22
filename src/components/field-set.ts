@@ -56,7 +56,7 @@ const style = /*css*/`
   --s_field-set-border-color-focused: var(--s-field-set-border-color-focused, ${scheme.color.primary});
   --s_field-set-border-width: var(--s-field-set-border-width, 1px);
   --s_field-set-border-width-focused: var(--s-field-set-border-width-focused, 2px);
-  --s_field-set-border-radius: var(--s-field-set-border-radius, ${scheme.shape.corner.extraSmall});
+  --s_field-set-border-radius: var(--s-field-set-border-radius, 4px);
   --s_field-set-border-top-left-radius: var(--s-field-set-border-top-left-radius, var(--s_field-set-border-radius));
   --s_field-set-border-top-right-radius: var(--s-field-set-border-top-right-radius, var(--s_field-set-border-radius));
   --s_field-set-border-bottom-left-radius: var(--s-field-set-border-bottom-left-radius, var(--s_field-set-border-radius));

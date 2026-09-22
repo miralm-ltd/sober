@@ -17,7 +17,7 @@ const style = /*css*/`
   padding: 0 16px;
   gap: 8px;
   font-size: calc(var(--s-font-size, 1) * 16px);
-  border-radius: ${scheme.shape.corner.large};
+  border-radius: 16px;
   box-shadow: ${scheme.elevation.level3};
 }
 :host(:not([variant])){

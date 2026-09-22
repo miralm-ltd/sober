@@ -29,6 +29,7 @@ export const buttonStyle = /*css*/`
   pointer-events: none;
   background: color-mix(in srgb, ${scheme.color.onSurface} 12%, transparent) !important;
   color: color-mix(in srgb, ${scheme.color.onSurface} 38%, transparent) !important;
+  box-shadow: none !important;
 }
 ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
   width: 24px;

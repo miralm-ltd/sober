@@ -1,76 +1,82 @@
-# SplitButton
+# Split Button
 
 分割按钮，拆分按钮打开一个菜单，为用户提供与操作相关的更多选项。
 
 ```html preview
 <s-split-button>
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  label
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 ```
 
 ## 变体
 
-设置 `variant` 来设置不同的变体：`filled`、`elevated`、`tonal`、`outlined`。
+设置 `variant` 来设置不同的变体：`elevated`、`tonal`、`outlined`。
 
 ```html preview
-<s-split-button variant="filled">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
-</s-split-button>
-
 <s-split-button variant="elevated">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
 <s-split-button variant="tonal">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
 <s-split-button variant="outlined">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 ```
 
 ## 禁用
 
-设置 `disabled` 来禁用按钮。
-
-```html preview
-<s-split-button disabled> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
-</s-split-button>
-
-<s-split-button disabled variant="elevated">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
-</s-split-button>
-
-<s-split-button disabled variant="tonal"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
-</s-split-button>
-
-<s-split-button disabled variant="outlined">
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  Button
-</s-split-button>
-```
-
-## 使用插槽
-
-使用插槽放置其他组件，`toggle-icon` 插槽的会在切换时旋转 `-180` 度。
+在 `action` 和 `trigger` 上都可以设置 `disabled` 来禁用。
 
 ```html preview
 <s-split-button>
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  label
-  <svg slot="toggle-icon" viewBox="0 -960 960 960"><path d="M480-360 280-560h400L480-360Z"></path></svg>
-  <s-tooltip slot="toggle-icon" parentDepth="1">展开</s-tooltip>
+  <s-split-button-action disabled>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger disabled></s-split-button-trigger>
+</s-split-button>
+
+<s-split-button variant="elevated">
+  <s-split-button-action disabled>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger disabled></s-split-button-trigger>
+</s-split-button>
+
+<s-split-button variant="tonal">
+  <s-split-button-action disabled>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger disabled></s-split-button-trigger>
+</s-split-button>
+
+<s-split-button variant="outlined">
+  <s-split-button-action disabled>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger disabled></s-split-button-trigger>
 </s-split-button>
 ```
 
@@ -79,57 +85,59 @@
 设置 `size` 属性来设置按钮尺寸（你也可以设置 CSS 样式 `height` 来更精确的定义按钮高度） 。
 
 ```html preview
-<s-split-button size="extra-small"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  button
+<s-split-button size="extra-small">
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
-<s-split-button size="small"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  button
+<s-split-button size="small">
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
-<s-split-button size="medium"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  button
+<s-split-button size="medium">
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
-<s-split-button size="large"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  button
+<s-split-button size="large">
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 
-<s-split-button size="extra-large"> 
-  <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
-  button
+<s-split-button size="extra-large">
+  <s-split-button-action>
+    <svg viewBox="0 -960 960 960" slot="start"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
+    label
+  </s-split-button-action>
+  <s-split-button-trigger></s-split-button-trigger>
 </s-split-button>
 ```
 
----
-
 ## 属性
 
-| 名称     | 类型                                                     | 默认值   | 同步 | 说明   |
-| -------- | -------------------------------------------------------- | -------- | ---- | ------ |
-| variant  | `filled`, `elevated`, `tonal`, `outlined`                | `filled` | √    | 变体   |
-| size     | `small`, `extra-small`, `medium`, `large`, `extra-large` | `small`  | √    | 尺寸   |
-| disabled | `boolean`                                                | `false`  | √    | 禁用的 |
-| checked  | `boolean`                                                | `false`  | √    | 选中的 |
-
-## 事件
-
-| 名称   | 参数  | 冒泡 | 可取消 | 说明                   |
-| ------ | ----- | ---- | ------ | ---------------------- |
-| toggle | Event | ×    | ×      | 在点击了切换按钮后触发 |
+| 名称    | 类型                                                     | 默认值   | 同步 | 说明 |
+| ------- | -------------------------------------------------------- | -------- | ---- | ---- |
+| variant | `filled`, `elevated`, `tonal`, `outlined`                | `filled` | √    | 变体 |
+| size    | `small`, `extra-small`, `medium`, `large`, `extra-large` | `small`  | √    | 尺寸 |
 
 ## 插槽
 
-| 名称        | 说明                                                                                  |
-| ----------- | ------------------------------------------------------------------------------------- |
-| 匿名        | 按钮文本，默认支持文本, `.icon`, `svg`, `s-icon`, `s-loading`, `s-spinner`, `ms-icon` |
-| start       | 开始，默认同匿名                                                                      |
-| end         | 结束，默认支持同匿名                                                                  |
-| toggle-icon | 切换按钮图标，默认支持同匿名                                                          |
+| 名称 | 说明                                                |
+| ---- | --------------------------------------------------- |
+| 匿名 | `s-split-button-action` 和 `s-split-button-trigger` |
 
 ## 键盘快捷键
 

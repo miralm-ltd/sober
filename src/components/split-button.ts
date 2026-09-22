@@ -5,107 +5,55 @@ import './ripple.js'
 
 const props = useProps({
   variant: ['filled', 'elevated', 'tonal', 'outlined'],
-  size: ['small', 'extra-small', 'medium', 'large', 'extra-large'],
+  size: ['small', 'extra-small', 'medium', 'large', 'extra-large']
+})
+const actionProps = useProps({
+  disabled: false
+})
+const triggerProps = useProps({
   disabled: false,
-  checked: false,
+  checked: false
 })
 const style = /*css*/`
 :host{
-  height: 40px;
+  display: inline-flex;
+  vertical-align: middle;
   gap: 2px;
+  height: 40px;
   border-radius: 20px;
-  visibility: hidden;
-  outline-color: currentColor;
-  isolation: isolate;
-}
-.btn{
-  display: inherit;
-  align-items: inherit;
-  justify-content: inherit;
-  height: inherit;
-  position: inherit;
-  cursor: inherit;
-  outline-color: inherit;
-  visibility: visible;
-  background: inherit;
-  box-shadow: inherit;
-  &:focus-visible{
-    z-index: 1;
-  }
+  font-size: calc(var(--s-font-size, 1) * 14px);
 }
 .layout{
-  padding: 0 12px 0 16px;
-  border-top-left-radius: inherit;
-  border-bottom-left-radius: inherit;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  gap: 8px;
-  &:is([pressed], [hover]){
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-  }
-}
-.toggle{
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-top-right-radius: inherit;
-  border-bottom-right-radius: inherit;
-  aspect-ratio: 1;
-  -webkit-aspect-ratio: 1;
-  svg{
-    width: 20px;
-    height: 20px;
-  }
-  &:is([hover], [pressed]){
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-  }
-}
-
-::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-}
-::slotted([slot=toggle-icon]){
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
-  margin-left: -1px;
-}
-:host([disabled]) .btn{
-  pointer-events: none;
-  background: color-mix(in srgb, ${scheme.color.onSurface} 12%, transparent) !important;
-  color: color-mix(in srgb, ${scheme.color.onSurface} 38%, transparent) !important;
-  box-shadow: none !important;
-}
-:host([checked]) .toggle{
+  display: contents;
   border-radius: inherit;
-  svg,
-  ::slotted(:is(.icon, s-icon, svg, ms-icon)[slot=toggle-icon]){
-    transform: rotate(-180deg);
-    margin-left: 0;
-  }
 }
-/**Variant**/
 :host(:not([variant])){
-  color: ${scheme.color.onPrimary};
-  background: ${scheme.color.primary};
-  outline-color: ${scheme.color.primary};
+  ::slotted(s-split-button-action),
+  ::slotted(s-split-button-trigger){
+    background-color: ${scheme.color.primary};
+    color: ${scheme.color.onPrimary};
+    outline-color: ${scheme.color.primary};
+  }
 }
 :host([variant=elevated]){
-  color: ${scheme.color.primary};
-  background: ${scheme.color.surfaceContainerLow};
-  box-shadow: ${scheme.elevation.level1};
+  ::slotted(s-split-button-action),
+  ::slotted(s-split-button-trigger){
+    color: ${scheme.color.primary};
+    background: ${scheme.color.surfaceContainerLow};
+    box-shadow: ${scheme.elevation.level1};
+  }
 }
 :host([variant=tonal]){
-  color: ${scheme.color.onSecondaryContainer};
-  background: ${scheme.color.secondaryContainer};
+  ::slotted(s-split-button-action),
+  ::slotted(s-split-button-trigger){
+    color: ${scheme.color.onSecondaryContainer};
+    background: ${scheme.color.secondaryContainer};
+  }
 }
 :host([variant=outlined]){
-  color: ${scheme.color.onSurfaceVariant};
-  background: none;
-  .btn{
+  ::slotted(s-split-button-action),
+  ::slotted(s-split-button-trigger){
+    color: ${scheme.color.onSurfaceVariant};
     &::before{
       content: '';
       position: absolute;
@@ -115,180 +63,195 @@ const style = /*css*/`
       border-radius: inherit;
     }
   }
-}
-/**Size**/
+}/**Size**/
 :host([size=extra-small]){
   height: 32px;
-  font-size: calc(var(--s-font-size, 1) * 12px);
   border-radius: 16px;
+  font-size: calc(var(--s-font-size, 1) * 12px);
   .layout{
-    gap: 4px;
-    padding: 0 10px 0 12px;
-    &:is([pressed], [hover]){
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
+    --s_split-button-icon-size: 16px;
   }
-  &:host(:not([checked])) .toggle:is([pressed], [hover]){
+  ::slotted(s-split-button-action){
+    padding: 0 10px 0 12px;
+    gap: 4px;
+  }
+  ::slotted(s-split-button-action:is([pressed], [hover])){
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  ::slotted(s-split-button-trigger:is([pressed], [hover]):not([checked])){
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-  }
-  ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
-    width: 16px;
-    height: 16px;
-    font-size: 16px;
-  }
-  svg,
-  ::slotted([slot=toggle-icon]){
-    width: 18px;
-    height: 18px;
-    font-size: 18px;
-    margin-left: -2px;
   }
 }
 :host([size=medium]){
   height: 56px;
-  font-size: calc(var(--s-font-size, 1) * 16px);
   border-radius: 28px;
+  font-size: calc(var(--s-font-size, 1) * 16px);
   .layout{
+    --s_split-button-icon-size: 24px;
+  }
+  ::slotted(s-split-button-action){
     padding: 0 24px;
-  }
-  ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
-    width: 24px;
-    height: 24px;
-    font-size: 24px;
-  }
-  svg,
-  ::slotted([slot=toggle-icon]){
-    width: 26px;
-    height: 26px;
-    font-size: 26px;
-    margin-left: -2px;
   }
 }
 :host([size=large]){
   height: 96px;
-  font-size: calc(var(--s-font-size, 1) * 26px);
   border-radius: 48px;
+  font-size: calc(var(--s-font-size, 1) * 26px);
   .layout{
+    --s_split-button-icon-size: 32px;
+  }
+  ::slotted(s-split-button-action){
     padding: 0 48px;
     gap: 12px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    &:is([pressed], [hover]){
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-    }
   }
-  &:host(:not([checked])) .toggle{
+  ::slotted(s-split-button-trigger:not([checked])){
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-    &:is([pressed], [hover]){
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-    }
   }
-  ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
-    width: 32px;
-    height: 32px;
-    font-size: 32px;
+  ::slotted(s-split-button-action:is([pressed], [hover])){
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
-  svg,
-  ::slotted([slot=toggle-icon]){
-    width: 38px;
-    height: 38px;
-    font-size: 38px;
-    margin-left: -3px;
+  ::slotted(s-split-button-trigger:is([pressed], [hover]):not([checked])){
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 }
 :host([size=extra-large]){
   height: 136px;
-  font-size: calc(var(--s-font-size, 1) * 32px);
   border-radius: 68px;
+  font-size: calc(var(--s-font-size, 1) * 32px);
   .layout{
+    --s_split-button-icon-size: 40px;
+  }
+  ::slotted(s-split-button-action){
     padding: 0 64px;
     gap: 16px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
-    &:is([pressed], [hover]){
-      border-top-right-radius: 20px;
-      border-bottom-right-radius: 20px;
-    }
   }
-  &:host(:not([checked])) .toggle{
+  ::slotted(s-split-button-trigger:not([checked])){
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
-    &:is([pressed], [hover]){
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px;
-    }
   }
-  ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
-    width: 40px;
-    height: 40px;
-    font-size: 40px;
+  ::slotted(s-split-button-action:is([pressed], [hover])){
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
-  svg,
-  ::slotted([slot=toggle-icon]){
-    width: 50px;
-    height: 50px;
-    font-size: 50px;
-    margin-left: -6px;
+  ::slotted(s-split-button-trigger:is([pressed], [hover]):not([checked])){
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
   }
 }
-@supports not (color: color-mix(in srgb, black, white)){
-  :host([disabled]) .btn{
-    background: ${scheme.color.surfaceContainerHigh} !important;
-    color: ${scheme.color.outline} !important;
-    box-shadow: none !important;
+`
+
+const actionStyle = /*css*/`
+:host{
+  height: 100%;
+  font-size: inherit;
+  gap: 8px;
+  padding: 0px 12px 0px 16px;
+  border-radius: 4px;
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+:host(:is([pressed], [hover])){
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
+  width: var(--s_split-button-icon-size, 20px);
+  height: var(--s_split-button-icon-size, 20px);
+  font-size: var(--s_split-button-icon-size, 20px);
+}
+`
+
+const triggerStyle = /*css*/`
+:host{
+  height: 100%;
+  border-radius: 4px;
+  aspect-ratio: 1;
+  -webkit-aspect-ratio: 1;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+:host(:is([pressed], [hover])){
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+svg,
+::slotted(:is(.icon, svg, s-icon, ms-icon)){
+  width: var(--s_split-button-icon-size, 20px);
+  height: var(--s_split-button-icon-size, 20px);
+  font-size: var(--s_split-button-icon-size, 20px);
+}
+:host([checked]){
+  border-radius: 50%;
+  svg,
+  ::slotted(:is(.icon, svg, s-icon, ms-icon)[slot=icon]){
+    transform: rotate(-180deg);
   }
 }
 `
 
 const template = /*html*/`
-<div class="layout btn" part="layout" tabindex="0" role="button">
-  <slot name="start"></slot>
-  <div class="text" part="text">
-    <slot></slot>
-  </div>
-  <slot name="end"></slot>
-  <s-ripple></s-ripple>
+<div class="layout" part="layout">
+  <slot></slot>
 </div>
-<div class="toggle btn" part="toggle" tabindex="0" role="toggle">
-  <slot name="toggle-icon">
-    <svg viewBox="0 -960 960 960">
-      <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"></path>
-    </svg>
-  </slot>
-  <s-ripple></s-ripple>
+`
+const actionTemplate = /*html*/`
+<slot name="start"></slot>
+<div class="text" part="text">
+  <slot></slot>
 </div>
+<slot name="end"></slot>
+<s-ripple></s-ripple>
+`
+const triggerTemplate = /*html*/`
+<slot name="icon">
+  <svg viewBox="0 -960 960 960"><path d="M480-345 240-585l56-56 184 183 184-183 56 56-240 240Z"></path></svg>
+</slot>
+<slot></slot>
+<s-ripple></s-ripple>
 `
 
 export class SplitButton extends useElement({
-  props, template, style: [buttonStyle, style],
-  setup(shadowRoot) {
-    const layout = shadowRoot.querySelector<HTMLDivElement>('.layout')!
-    const toggle = shadowRoot.querySelector<HTMLDivElement>('.toggle')!
-    toggle.onclick = (e) => {
-      e.stopPropagation()
+  props, template, style
+}) { }
+
+export class SplitButtonAction extends useElement({
+  style: [buttonStyle, actionStyle],
+  props: actionProps,
+  states: ['focusable'],
+  template: actionTemplate
+}) { }
+
+export class SplitButtonTrigger extends useElement({
+  style: [buttonStyle, triggerStyle],
+  props: triggerProps,
+  states: ['focusable'],
+  template: triggerTemplate,
+  setup() {
+    this.addEventListener('click', () => {
       this.checked = !this.checked
-      this.dispatchEvent(new Event('toggle'))
-    }
-    focusKeydownClick(layout, toggle)
-    return {
-      disabled: (v) => {
-        layout.tabIndex = v ? -1 : 0
-        toggle.tabIndex = v ? -1 : 0
-      }
-    }
+      this.dispatchEvent(new Event('change'))
+    })
   }
 }) { }
 
 const name = SplitButton.define('s-split-button')
+const actionName = SplitButtonAction.define('s-split-button-action')
+const triggerName = SplitButtonTrigger.define('s-split-button-trigger')
 
 declare global {
   interface HTMLElementTagNameMap {
     [name]: SplitButton
+    [actionName]: SplitButtonAction
+    [triggerName]: SplitButtonTrigger
   }
   namespace React {
     namespace JSX {

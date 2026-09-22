@@ -186,8 +186,8 @@ const itemStyle = /*css*/`
 .toggle-icon{
   display: none;
   svg{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     fill: currentColor;
     position: relative;
     transition-duration: inherit;
@@ -247,7 +247,7 @@ const itemStyle = /*css*/`
   }
 }
 :host([open]){
-  .toggle-icon>svg,
+  .toggle-icon svg,
   ::slotted(:is(s-icon, svg)[slot=toggle-icon]){
     transform: rotate(-180deg);
   }

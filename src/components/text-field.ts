@@ -38,7 +38,7 @@ const style = /*css*/`
   display: contents;
   --s_text-field-padding-left: var(--s-text-field-padding-left, var(--s-text-field-padding, 16px));
   --s_text-field-padding-right: var(--s-text-field-padding-right, var(--s-text-field-padding, 16px));
-  --s_text-field-border-radius: var(--s-text-field-border-radius, ${scheme.shape.corner.extraSmall});
+  --s_text-field-border-radius: var(--s-text-field-border-radius, 4px);
   --s_text-field-border-top-left-radius: var(--s-text-field-border-top-left-radius, var(--s_text-field-border-radius));
   --s_text-field-border-top-right-radius: var(--s-text-field-border-top-right-radius, var(--s_text-field-border-radius));
   --s_text-field-border-bottom-left-radius: var(--s-text-field-border-bottom-left-radius, var(--s_text-field-border-radius));
@@ -96,6 +96,9 @@ const style = /*css*/`
     display: none;
   }
 }
+.view{
+  padding: 0 var(--s_text-field-padding-right) 0 var(--s_text-field-padding-left);
+}
 .number-spin{
   flex-direction: column;
   justify-content: center;
@@ -125,8 +128,8 @@ const style = /*css*/`
   }
 }
 :host([type=password][showPasswordToggle]){
-  .editor[type=password]+ .end>.password-toggle .on,
-  .editor[type=text]+ .end>.password-toggle .off{
+  .editor[type=password]+.view+.end>.password-toggle .on,
+  .editor[type=text]+.view+.end>.password-toggle .off{
     display: block;
   }
   .password-toggle{
@@ -161,7 +164,10 @@ const template = /*html*/`
     <div class="label" slot="legend" part="label">
       <span></span>
     </div>
-    <input name="input" slot="body" tabindex="-1" class="editor layout" part="input" autocomplete="off" />
+    <input name="input" slot="body" tabindex="-1" class="editor" part="input" autocomplete="off" />
+    <div slot="body" class="view" part="view">
+      <slot></slot>
+    </div>
     <div slot="end" class="end" part="end">
       <div class="icon-button hide clear" tabindex="0" part="action clear">
         <svg viewBox="0 -960 960 960"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"></path></svg>
@@ -191,7 +197,7 @@ const template = /*html*/`
   </s-field-set>
   <div class="helper" part="helper">
     <div class="text" part="helper-text">
-      <slot></slot>
+      <slot name="helper"></slot>
     </div>
     <div class="count hide">0</div>
   </div>

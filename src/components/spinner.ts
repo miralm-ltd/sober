@@ -171,7 +171,6 @@ export class Spinner extends useElement({
       layout.style.setProperty('--s_spinner-indicator-dasharray', `${v}px ${100 - v}px`)
     }
     const updateStroke = () => {
-      console.log('set w', this.strokeWidth)
       layout.style.setProperty('--s_spinner-stroke-width', `${this.strokeWidth}px`)
       updateGap()
       useThrottle(renderValue)

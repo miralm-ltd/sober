@@ -1,4 +1,4 @@
-# IconButton
+# Icon Button
 
 图标按钮帮助用户只需点击一次即可执行操作。
 
@@ -169,7 +169,7 @@
 
 该组件可以作为表单元素使用，可以作为复选框、表单重置、提交按钮。
 
-```html preview block
+```html preview
 <form action="http://coolaf.com/tool/params" method="get">
   选择标签：
   <s-icon-button name="tag" type="checkbox" value="star">
@@ -186,8 +186,6 @@
   <s-button type="submit" variant="filled"> 提交结果 </s-button>
 </form>
 ```
-
----
 
 ## 属性
 

@@ -1,6 +1,6 @@
 # Picker
 
-选择框。
+选择框，用于大量数据的单选或多选。
 
 ```html preview
 <s-picker label="地区">
@@ -222,21 +222,21 @@
 
 ## 属性
 
-| 名称                   | 类型                       | 默认值                  | 同步 | 说明                                                                            |
-| ---------------------- | -------------------------- | ----------------------- | ---- | ------------------------------------------------------------------------------- |
-| name                   | string                     |                         | ×    | 提交表单时使用的 name 属性                                                      |
-| value                  | string                     |                         | ×    | 选中的值（多选时使用 `,` 分割多个值），该值的优先级高于子元素的 `selected` 属性 |
-| defaultValue           | string                     |                         | ×    | 默认选中值（仅表单重置时会设置，同 `value` 属性）                               |
-| multiple               | boolean                    | false                   | √    | 多选的                                                                          |
-| selectable             | boolean                    | true                    | √    | 可选中的，禁用该属性点击时不会再选中                                            |
-| mode                   | scrollable, fixed          | x                       | √    | 模式，scrollable=可滚动的，fixed=固定的                                         |
-| orientation            | horizontal, vertical       | horizontal              | √    | 组件方向，horizontal=横向，vertical=竖向                                        |
-| itemsOrientation       | auto, horizontal, vertical | auto                    | ×    | 子元素方向，auto=自动，horizontal=横向，vertical=竖向                           |
-| media                  | string                     | (orientation: portrait) | ×    | 媒体查询，屏幕处于纵向，设置该属性可控制 `itemsOrientation` 的切换时机          |
-| items `只读`           | TabItem[]                  | []                      |      | 所有子元素                                                                      |
-| selectedItems `只读`   | TabItem[]                  | []                      |      | 选中的子元素                                                                    |
-| selectedIndex `只读`   | number                     | -1                      |      | 当前选中下标                                                                    |
-| selectedIndexes `只读` | number[]                   | []                      |      | 当前多选下标数组                                                                |
+| 名称                   | 类型                             | 默认值     | 同步 | 说明                                                                            |
+| ---------------------- | -------------------------------- | ---------- | ---- | ------------------------------------------------------------------------------- |
+| variant                | `outlined`, `text`               | `outlined` | √    | 变体                                                                            |
+| placement              | `bottom`, `top`, `left`, `right` | `bottom`   | √    | 显示位置，该属性只影响默认位置，在屏幕无法完整显示时会自动调整显示方向          |
+| searchable             | `boolean`                        | `false`    | √    | 可搜索的                                                                        |
+| searchPlaceholder      | `string`                         | `'`        | √    | 搜索占位提示                                                                    |
+| name                   | `string`                         | `''`       | ×    | 提交表单时使用的 name 属性                                                      |
+| value                  | `string`                         | `''`       | ×    | 选中的值（多选时使用 `,` 分割多个值），该值的优先级高于子元素的 `selected` 属性 |
+| defaultValue           | `string`                         | `''`       | ×    | 默认选中值（仅表单重置时会设置，同 `value` 属性）                               |
+| multiple               | `boolean`                        | `false`    | √    | 多选的                                                                          |
+| selectable             | `boolean`                        | `true`     | √    | 可选中的，禁用该属性点击时不会再选中                                            |
+| items `只读`           | `TabItem[]`                      | `[]`       |      | 所有子项                                                                        |
+| selectedItems `只读`   | `TabItem[]`                      | `[]`       |      | 选中的子项                                                                      |
+| selectedIndex `只读`   | `number`                         | `-1`       |      | 当前选中下标                                                                    |
+| selectedIndexes `只读` | `number[]`                       | `[]`       |      | 当前多选下标数组                                                                |
 
 ## 事件
 
@@ -246,47 +246,9 @@
 
 ## 插槽
 
-| 名称 | 说明                                    |
-| ---- | --------------------------------------- |
-| 匿名 | 放置 TabItem 子元素，也可以放置其他内容 |
-
-## HTML 标记属性
-
-| 名称          | 说明           |
-| ------------- | -------------- |
-| item-vertical | 子项竖向时设置 |
-
----
-
-## PickerItem
-
-该组件仅作为 `Tab` 的子元素使用，单独使用时只是普通容器。
-
-## Item 属性
-
-| 名称       | 类型    | 默认值 | 同步 | 说明                                                                                             |
-| ---------- | ------- | ------ | ---- | ------------------------------------------------------------------------------------------------ |
-| text       | string  |        | ×    | 选中时显示文本，如果你的 `PickerItem` 文本会变化，请务必使用该属性，否则已选中的文本不会实时更新 |
-| value      | string  |        | ×    | 任意值，该值提供给 `Tab` 组件选中时使用                                                          |
-| selected   | boolean | false  | √    | 选中的                                                                                           |
-| disabled   | boolean | false  | √    | 禁用的                                                                                           |
-| selectable | boolean | true   | √    | 可选中的，禁用该属性点击时不会再选中                                                             |
-
-## Item 事件
-
-| 名称  | 参数  | 冒泡 | 可取消 | 说明               |
-| ----- | ----- | ---- | ------ | ------------------ |
-| input | Event | ×    | ×      | 点击元素选中后触发 |
-
-## Item 插槽
-
-| 名称 | 说明                       |
-| ---- | -------------------------- |
-| 匿名 | 支持 s-badge, s-tooltip 等 |
-| icon | 图标                       |
-| text | 文本                       |
-
----
+| 名称 | 说明                                       |
+| ---- | ------------------------------------------ |
+| 匿名 | 放置 PickerItem 子元素，也可以放置其他内容 |
 
 ## 键盘快捷键
 

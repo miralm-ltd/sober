@@ -31,7 +31,7 @@ const style = /*css*/`
     position: absolute;
     max-width: 80%;
     transition-property: box-shadow;
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
   ::slotted([slot=start]){
     border-top-left-radius: 0;

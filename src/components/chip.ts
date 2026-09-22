@@ -23,7 +23,7 @@ const style = /*css*/`
   padding: 0 16px;
   cursor: auto;
   color: ${scheme.color.onSurface};
-  border-radius: ${scheme.shape.corner.small};
+  border-radius: 8px;
   .ripple{
     display: none;
   }

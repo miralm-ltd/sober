@@ -19,7 +19,7 @@ const style = /*css*/`
   position: relative;
   line-height: calc(100% + 8px);
   font-size: calc(var(--s-font-size, 1) * 14px);
-  border-radius: ${scheme.shape.corner.small};
+  border-radius: 8px;
   background: ${scheme.color.surfaceContainerHigh};
   transition-timing-function: ${scheme.motion.easing.standard};
   transition-duration: ${scheme.motion.duration.short4};
@@ -60,7 +60,7 @@ const style = /*css*/`
   position: relative;
   flex-shrink: 0;
   &[pressed]{
-    border-radius: ${scheme.shape.corner.small};
+    border-radius: 8px;
   }
   svg,
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){

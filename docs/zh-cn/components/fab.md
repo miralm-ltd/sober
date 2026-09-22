@@ -1,6 +1,6 @@
-# FloatingActionButton
+# Fab
 
-浮动操作按钮（FAB）帮助用户采取主要操作。
+浮动操作按钮（Floating Action Button）帮助用户采取主要操作。
 
 ```html preview
 <s-fab>
@@ -136,8 +136,6 @@
   <svg viewBox="0 -960 960 960" slot="end"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"></path></svg>
 </s-fab>
 ```
-
----
 
 ## 属性
 

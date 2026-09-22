@@ -25,7 +25,7 @@ const style = /*css*/`
   color: ${scheme.color.onSurfaceVariant};
 }
 :host([pressed]){
-  border-radius: ${scheme.shape.corner.small};
+  border-radius: 8px;
 }
 :host([variant=filled]){
   background: ${scheme.color.primary};
@@ -54,7 +54,7 @@ const style = /*css*/`
   }
   &:host([checked]){
     &:host(:not([pressed])){
-      border-radius: ${scheme.shape.corner.medium};
+      border-radius: 12px;
     }
     &:host(:not([variant])){
       background: ${scheme.color.primaryContainer};
@@ -87,10 +87,10 @@ const style = /*css*/`
   border-radius: 16px;
   font-size: calc(var(--s-font-size, 1) * 20px);
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.small};
+    border-radius: 8px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.medium};
+    border-radius: 12px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 20px;
@@ -103,10 +103,10 @@ const style = /*css*/`
   width: 56px;
   border-radius: 28px;
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.medium};
+    border-radius: 12px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
 }
 :host([size=large]){
@@ -115,10 +115,10 @@ const style = /*css*/`
   border-radius: 48px;
   font-size: calc(var(--s-font-size, 1) * 32px);
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.extraLarge};
+    border-radius: 28px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 32px;
@@ -132,10 +132,10 @@ const style = /*css*/`
   border-radius: 68px;
   font-size: calc(var(--s-font-size, 1) * 40px);
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.small};
+    border-radius: 8px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.medium};
+    border-radius: 12px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 40px;

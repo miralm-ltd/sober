@@ -14,7 +14,7 @@
 
 ## 使用插槽
 
-可以使用 `start` 和 `end` 插槽来添加任意内容。
+可以使用 `start` 和 `end` 插槽在前后添加内容，使用匿名插槽在内部放置内容，使用 `helper` 插槽来添加帮助文本。
 
 ```html preview
 <s-text-area label="请输入内容..." placeholder="请输入文本">
@@ -35,15 +35,18 @@
   <s-button slot="start" variant="text"> 点击我 </s-button>
   <s-button slot="end" variant="text"> 点击我 </s-button>
 </s-text-area>
-```
 
-## 帮助文本
+<s-text-area label="请输入内容..." placeholder="请输入文本">
+  <s-chip closable onclose="this.remove()" style="margin-bottom: 12px">
+    贵州
+  </s-chip>
+  <s-chip closable onclose="this.remove()" style="margin-bottom: 12px; margin-left: 8px;">
+    广西
+  </s-chip>
+</s-text-area>
 
-可以将任意内容作为帮助文本。
-
-```html preview
-<s-text-area label="请输入内容..." placeholder="请输入文本" showCount maxLength="100">
-  请输入错误信息
+<s-text-area label="请输入内容..." placeholder="请输入文本">
+  <div slot="helper">请输入 10 个字符</div>
 </s-text-area>
 ```
 
@@ -75,7 +78,7 @@
 
 ```html preview
 <s-text-area label="请输入内容..." placeholder="请输入文本" showError value="userName">
-  用户名称已存在
+  <div slot="helper">请输入 10 个字符</div>
 </s-text-area>
 ```
 
@@ -193,11 +196,12 @@
 
 ## 插槽
 
-| 名称  | 说明                                                                                           |
-| ----- | ---------------------------------------------------------------------------------------------- |
-| 匿名  | 提示文本                                                                                       |
-| start | 开始，默认支持 `.icon`, `svg`, `s-icon`, `s-loading`, `s-spinner`, `s-button`, `s-icon-button` |
-| end   | 结束，默认支持同 start                                                                         |
+| 名称   | 说明                                                                                           |
+| ------ | ---------------------------------------------------------------------------------------------- |
+| 匿名   | 自定义内容                                                                                     |
+| start  | 开始，默认支持 `.icon`, `svg`, `s-icon`, `s-loading`, `s-spinner`, `s-button`, `s-icon-button` |
+| end    | 结束，默认支持同 start                                                                         |
+| helper | 帮助文本                                                                                       |
 
 ## CSS 样式变量
 

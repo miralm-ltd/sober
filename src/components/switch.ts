@@ -20,7 +20,7 @@ const style = /*css*/`
   width: 52px;
   aspect-ratio: 1.625;
   -webkit-aspect-ratio: 1.625;
-  border-radius: ${scheme.shape.corner.large};
+  border-radius: 16px;
   position: relative;
   color: ${scheme.color.primary};
   outline-color: ${scheme.color.onSurface};

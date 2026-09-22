@@ -23,7 +23,7 @@ const style = /*css*/`
   border-radius: 20px;
 }
 :host([pressed]){
-  border-radius: ${scheme.shape.corner.small};
+  border-radius: 8px;
 }
 :host(:not([variant])){
   background: ${scheme.color.primary};
@@ -66,7 +66,7 @@ const style = /*css*/`
   }
   &:host([checked]){
     &:host(:not([pressed])){
-      border-radius: ${scheme.shape.corner.medium};
+      border-radius: 12px;
     }
     &:host(:is(:not([variant]), [variant=elevated])){
       background: ${scheme.color.primary};
@@ -107,10 +107,10 @@ const style = /*css*/`
   border-radius: 16px;
   font-size: calc(var(--s-font-size, 1) * 12px);
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.small};
+    border-radius: 8px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.medium};
+    border-radius: 12px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 16px;
@@ -124,10 +124,10 @@ const style = /*css*/`
   padding: 0 24px;
   border-radius: 28px;
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.medium};
+    border-radius: 12px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 24px;
@@ -142,10 +142,10 @@ const style = /*css*/`
   padding: 0 48px;
   border-radius: 48px;
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.extraLarge};
+    border-radius: 28px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 32px;
@@ -160,10 +160,10 @@ const style = /*css*/`
   padding: 0 64px;
   border-radius: 68px;
   &:host([pressed]){
-    border-radius: ${scheme.shape.corner.large};
+    border-radius: 16px;
   }
   &:host([type=checkbox][checked]:not([pressed])){
-    border-radius: ${scheme.shape.corner.extraLarge};
+    border-radius: 28px;
   }
   ::slotted(:is(.icon, svg, s-icon, s-loading, s-spinner, ms-icon)){
     width: 40px;

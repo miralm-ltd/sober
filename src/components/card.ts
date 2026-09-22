@@ -21,7 +21,7 @@ const style = /*css*/`
   transition-timing-function: ${scheme.motion.easing.standard};
   transition-duration: ${scheme.motion.duration.short4};
   color: ${scheme.color.onSurface};
-  border-radius: ${scheme.shape.corner.medium};
+  border-radius: 12px;
 }
 .ripple{
   display: none;
