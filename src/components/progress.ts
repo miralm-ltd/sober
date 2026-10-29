@@ -156,12 +156,13 @@ export class Progress extends useElement({
   style: [style, indeterminateStyle], props, template,
   setup(shadowRoot) {
     const layout = shadowRoot.querySelector<HTMLDivElement>('.layout')!
-    const rander = () => {
+    const render = () => {
       layout.classList.toggle('min', this.value === 0)
       layout.style.setProperty('--s_progress-value', `${Math.min(this.value, this.max) / this.max * 100}%`)
     }
+    useThrottle(render)
     return {
-      value: () => useThrottle(rander)
+      value: () => useThrottle(render)
     }
   }
 }) { }
